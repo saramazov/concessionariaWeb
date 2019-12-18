@@ -7,6 +7,8 @@
 <title>Privilegi</title>
 </head>
 <body>
+<%if(request.getAttribute("dipendente")!=null){ %>
 Sei un <%=request.getAttribute("ruolo")%>
+<%} else {%>Dipendente non esistente!<%}%>
 </body>
 </html>

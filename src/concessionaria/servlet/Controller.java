@@ -29,12 +29,15 @@ public class Controller extends HttpServlet {
 		DipendenteDAO dao = new DipendenteDAO();
 		try {
 			Dipendente dip = dao.findById(Long.parseLong(id));
-			request.setAttribute("ruolo",dip.getRuolo());
+			request.setAttribute("dipendente", dip);
+			if(dip!=null) {
+				request.setAttribute("ruolo",dip.getRuolo());
+			}
 		} catch (NumberFormatException | ConcessionariaException e) {
 			e.printStackTrace();
 		}
 			
-		RequestDispatcher rd = request.getRequestDispatcher("view.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("jsp/view.jsp");
 		rd.forward(request, response);
 	}
 
