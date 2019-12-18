@@ -49,3 +49,18 @@ function attuatore(y,func){
 }
 
 console.log(attuatore(12,quadrato));
+
+function apple(type,color){
+    this._type=type, //private
+    this.color=color,
+    this.getInfo=function(){
+        return "Apple: "+this._type+", "+this.color;
+    };
+}
+
+let mela = new apple("Golden", "Giallo aranciato");
+//mela.getInfo = quadrato(x);
+console.log(mela);
+//mela._type="a";
+//console.log(mela._type);
+
