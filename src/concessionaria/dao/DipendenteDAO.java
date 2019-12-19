@@ -52,13 +52,18 @@ public class DipendenteDAO implements Dao<Dipendente> {
 				throw new SQLException("Creazione dipendente fallita");
 			}
 			generatedKeys = pst.getGeneratedKeys();
+			connection.commit();
 			if(generatedKeys.next()) {
 				d.setId(generatedKeys.getLong(1));
 			}
 			else throw new SQLException("Fail: ID non ottenuta");
-			
 		} catch (ClassNotFoundException | SQLException | NamingException e) {
 			e.printStackTrace();
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			throw new ConcessionariaException();
 		} finally {
 			try {generatedKeys.close();} catch (Exception e) {}
@@ -132,12 +137,18 @@ public class DipendenteDAO implements Dao<Dipendente> {
 	            ResultSet.CONCUR_READ_ONLY);
 			 pst.setLong(1, id);
 			 affectedRows = pst.executeUpdate();
+			 connection.commit();
 			 if(affectedRows != 1){
 					throw new SQLException("Cancellazione dipendente fallita");
 			 }
 			 
 		 }catch (ClassNotFoundException | SQLException | NamingException e) {
 			 e.printStackTrace();
+			 try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			 throw new ConcessionariaException("ID not found");
 		 }finally {
 			 try {pst.close(); } catch (SQLException e) {}
@@ -167,12 +178,18 @@ public class DipendenteDAO implements Dao<Dipendente> {
 			pst.setString(4, d.getRuolo());
 			pst.setLong(5, d.getId());
 			affectedRows = pst.executeUpdate();
+			connection.commit();
 			if(affectedRows != 1){
 				throw new SQLException();
 			}
 			
 		} catch (ClassNotFoundException | SQLException | NamingException e) {
 			e.printStackTrace();
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			throw new ConcessionariaException("Update dipendente fallito");
 		} finally {
 			try {pst.close();} catch (Exception e) {}

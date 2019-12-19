@@ -26,6 +26,7 @@ public class ConnectionFactory {
 		InitialContext context = new InitialContext();
 		DataSource datasource = (DataSource) context.lookup("java:/comp/env/jdbc/Mysql");
 		Connection connection = datasource.getConnection();
+		connection.setAutoCommit(false);
 		return connection;
 	}
 
