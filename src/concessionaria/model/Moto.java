@@ -17,9 +17,11 @@ public class Moto extends Veicolo {
 		
 	}
 
-	public Moto(Long id, String targa, String produttore, String modello, String alimentazione, String colore,
-			Double prezzo) {
+	public Moto(Long id, String targa, String produttore, String modello,
+			String alimentazione, String colore,
+			Double prezzo, Integer altezzaSedile) {
 		super(id, targa, produttore, modello, alimentazione, colore, prezzo);
+		this.altezzaSedile = altezzaSedile;
 	}
 
 	public Moto() {}

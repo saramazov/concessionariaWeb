@@ -22,7 +22,8 @@ public abstract class Veicolo implements Serializable {
 		this.prezzo = prezzo;
 	}
 	
-	public Veicolo(Long id, String targa, String produttore, String modello, String alimentazione, String colore,
+	public Veicolo(Long id, String targa, String produttore, String modello, 
+			String alimentazione, String colore,
 			Double prezzo) {
 		this( targa, produttore,prezzo, modello, alimentazione, colore);
 		this.id = id;
