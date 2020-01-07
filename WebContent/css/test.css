@@ -1,0 +1,18 @@
+button {
+    background-color:red;
+}
+#bt02 {
+    font-family:cursive;
+}
+.boldBt{
+    font-weight: bolder;
+}
+a[title]{
+    color:blue;
+}
+a[href="http://www.google.com"]{
+    color:aquamarine; 
+}
+a.clickedLink[title]{
+    color:blueviolet;
+}
