@@ -26,7 +26,7 @@ for(let el of myArray){
 }
 
 function quadrato(x){
-    return x**2;
+	return x**2;
 }
 
 console.log("quadrato di 12: ",quadrato(12));

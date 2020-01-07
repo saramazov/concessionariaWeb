@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.naming.NamingException;
+
 import concessionaria.model.Auto;
 import concessionaria.model.Dipendente;
 import concessionaria.model.Moto;
@@ -53,13 +55,13 @@ public class VeicoloDAO implements Dao<Veicolo> {
 			pst.setString(1, tipo);
 			pst.setString(2, v.getTarga());
 			pst.setString(3, v.getProduttore());
-			pst.setString(4, v.getPrezzo());
+			pst.setDouble(4, v.getPrezzo());
 			pst.setString(5, v.getModello());
 			pst.setString(6, v.getAlimentazione());
 			pst.setString(7, v.getColore());
-			if(tipo.equals("M")) {pst.setString(8, ((Moto) v).getAltezzaSedile());}
+			if(tipo.equals("M")) {pst.setInt(8, ((Moto) v).getAltezzaSedile());}
 			else {pst.setString(8, null);}
-			if(tipo.equals("A")) {pst.setString(9, ((Auto) v).getNumeroPorte());}
+			if(tipo.equals("A")) {pst.setInt(9, ((Auto) v).getNumeroPorte());}
 			else {pst.setString(9, null);}
 			
 			int affectedRows = pst.executeUpdate();
@@ -197,12 +199,12 @@ public class VeicoloDAO implements Dao<Veicolo> {
 			pst.setString(5, v.getAlimentazione());
 			pst.setString(6, v.getColore());
 			if(v.getTipo().equals("A")) {
-				pst.setInteger(7, null);
-				pst.setInteger(8, ((Auto) v).getNumeroPorte());
+				//pst.setInt(7, null);
+				pst.setInt(8, ((Auto) v).getNumeroPorte());
 			}
 			else if(v.getTipo().equals("M")) {
-				pst.setInteger(7, ((Mot) v).getAltezzaSedile());
-				pst.setInteger(8, null);
+				pst.setInt(7, ((Moto) v).getAltezzaSedile());
+				//pst.setInt(8, null);
 			}
 			pst.setLong(9, v.getId());
 			affectedRows = pst.executeUpdate();
@@ -233,14 +235,13 @@ public class VeicoloDAO implements Dao<Veicolo> {
 		  return new Auto(rs.getLong(1),rs.getString(3), 
 			rs.getString(4),rs.getDouble(5),  
 		    rs.getString(6),rs.getString(7),
-		    rs.getString(8), rs.getInteger(10));
+		    rs.getString(8), rs.getInt(10));
 		 }
 		
 		else if(rs.getString(2).equals("M")) {
 			return new Moto(rs.getLong(1),rs.getString(3), 
-					rs.getString(4),rs.getDouble(5),  
-				    rs.getString(6),rs.getString(7),
-				    rs.getString(8), rs.getInteger(9));
+					rs.getString(4), rs.getString(6),rs.getString(7),
+				    rs.getString(8), rs.getDouble(5), rs.getInt(9));
 		}
 		
 		else return null;
