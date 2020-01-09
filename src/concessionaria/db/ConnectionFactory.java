@@ -16,7 +16,7 @@ public class ConnectionFactory {
 //     	       DriverManager.getConnection("jdbc:mysql://localhost/corso?" +
 //     	                                   "user=master&password=manager&serverTimezone=Europe/Rome");
 //		//System.out.println(connection.getClass().getName());
-		
+		     
 		
 		/* Cerco radice dell'albero (context)
 		 * Faccio lookup nel sottoalbero delle risorse java
