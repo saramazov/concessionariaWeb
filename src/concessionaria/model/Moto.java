@@ -11,7 +11,7 @@ public class Moto extends Veicolo {
 	
 	public Moto(String targa, String produttore, String modello, 
 			String alimentazione, String colore, Double prezzo,
-			String tipo, Integer altezzaSedile) {
+			Integer altezzaSedile) {
 		super(targa, produttore,prezzo, modello, alimentazione, colore);
 		this.altezzaSedile = altezzaSedile;
 		
