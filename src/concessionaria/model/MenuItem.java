@@ -86,5 +86,11 @@ public class MenuItem {
 	public void setOrdine(Integer ordine) {
 		this.ordine = ordine;
 	}
+
+	@Override
+	public String toString() {
+		return "\nMenuItem [id=" + id + ", descrizione=" + descrizione + ", link=" + link + ", ruolo=" + ruolo
+				+ ", livello=" + livello + ", richiamo=" + richiamo + ", ordine=" + ordine + "]";
+	}
 	
 }

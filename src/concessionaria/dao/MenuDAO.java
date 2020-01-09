@@ -17,15 +17,16 @@ public class MenuDAO implements Dao<Menu> {
 	
 	private static final String FindforQuery = 
 			"select *"+
-			" from tabellaMenu where ruolo=? and "
-			+ "livello=? and richiamo=?";
+			" from menu where ruolo=? and "
+			+ "livello=? "
+			+ "order by ordine";
 
-	public Menu menuSelect(String ruolo,String livello,String richiamo) throws ConcessionariaException {
+	public Menu menuSelect(String ruolo,Integer livello,String richiamo) throws ConcessionariaException {
 		 
 		 Connection connection = null;
 		 PreparedStatement pst = null ;
 		 ResultSet rs = null;
-		 Menu menu = null;
+		 Menu menu = new Menu();
 		 MenuItem item = null;
 		 
 		 try {
@@ -34,8 +35,8 @@ public class MenuDAO implements Dao<Menu> {
 	            ResultSet.TYPE_SCROLL_SENSITIVE,
 	            ResultSet.CONCUR_READ_ONLY);
 			 pst.setString(1, ruolo);
-			 pst.setString(2, livello);
-			 pst.setString(3, richiamo);
+			 pst.setInt(2, livello);
+			 //pst.setString(3, richiamo);
 			 rs = pst.executeQuery();
 			 while(rs.next()) {
 				 item = creaItem(rs);
