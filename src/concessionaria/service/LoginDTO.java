@@ -1,15 +1,16 @@
-package service;
+package concessionaria.service;
 
 import concessionaria.model.Dipendente;
 import concessionaria.model.Menu;
 
-public class DTO {
+public class LoginDTO {
 
+	public static final String NAME = "concessionaria.service.LoginDTO";
 	private Dipendente dipendente;
 	private Menu menu;
 	private Exception eccezione;
 	
-	public DTO() {}
+	public LoginDTO() {}
 	
 //	public DTO(Dipendente dipendente, Menu menu, Exception eccezione) {
 //		this.dipendente = dipendente;

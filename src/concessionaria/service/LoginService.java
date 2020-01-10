@@ -1,4 +1,4 @@
-package service;
+package concessionaria.service;
 
 import concessionaria.dao.DipendenteDAO;
 import concessionaria.dao.MenuDAO;
@@ -8,14 +8,15 @@ import concessionaria.model.Menu;
 
 public class LoginService {
 
-	public DTO comunicaServlet(String id) {
+	public LoginDTO comunicaServlet(String id) {
 		
-		DTO dto = new DTO();
+		LoginDTO dto = new LoginDTO();
 		try {
 			Dipendente dipendente = usaDaoDipendente(id);
 			Menu menu = usaDaoMenu(dipendente.getRuolo());
 			dto.addDipendente(dipendente);
 			dto.addMenu(menu);
+			//System.out.println(menu.menuSize());
 		} catch(Exception e) {
 			dto.addException(e);
 		}

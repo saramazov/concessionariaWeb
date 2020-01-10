@@ -11,11 +11,11 @@ public class ConnectionFactory {
 	
 	public static Connection getConnection() throws ClassNotFoundException, 
 									SQLException, NamingException {
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection connection =
-     	       DriverManager.getConnection("jdbc:mysql://localhost/corso?" +
-     	                                   "user=master&password=manager&serverTimezone=Europe/Rome");
-		//System.out.println(connection.getClass().getName());
+//		Class.forName("com.mysql.cj.jdbc.Driver");
+//		Connection connection =
+//     	       DriverManager.getConnection("jdbc:mysql://localhost/corso?" +
+//     	                                   "user=master&password=manager&serverTimezone=Europe/Rome");
+//		//System.out.println(connection.getClass().getName());
 		     
 		
 		/* Cerco radice dell'albero (context)
@@ -23,10 +23,10 @@ public class ConnectionFactory {
 		 * Ottengo la risorsa DataSourse e chiedo connessione
 		 */
 		
-//		InitialContext context = new InitialContext();
-//		DataSource datasource = (DataSource) context.lookup("java:/comp/env/jdbc/Mysql");
-//		Connection connection = datasource.getConnection();
-//		connection.setAutoCommit(false);
+		InitialContext context = new InitialContext();
+		DataSource datasource = (DataSource) context.lookup("java:/comp/env/jdbc/Mysql");
+		Connection connection = datasource.getConnection();
+		connection.setAutoCommit(false);
 		return connection;
 	}
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-public class Menu implements Iterable {
+public class Menu implements Iterable<MenuItem> {
 
 	Collection<MenuItem> elenco;
 	
@@ -26,7 +26,7 @@ public class Menu implements Iterable {
 	}
 
 	@Override
-	public Iterator iterator() {
+	public Iterator<MenuItem> iterator() {
 		return this.elenco.iterator();
 	}
 	
