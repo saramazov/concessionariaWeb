@@ -13,6 +13,11 @@
 
 <body>
     <%
+String ruolo = "A";
+String readonly="";
+if(!ruolo.equals("A")){
+	readonly="readonly=\"readonly\"";
+}
 VeicoloDTO dto = (VeicoloDTO) request.getAttribute(VeicoloDTO.NAME);
 if(!dto.success()){
 	%>
@@ -42,22 +47,17 @@ else{
 		
 	%>
         <tr>
-            <form action="https://www.youtube.com/watch?v=VjN5lEQkhPg"
-            	  method="post">
-                <td id=<%="id"+cont%>><%=v.getId() %></td>
-                <td id=<%="tipo"+cont%>><%=v.getTipo()%></td>
-                <td id=<%="targa"+cont%>><%=v.getTarga()%></td>
-                <td id=<%="produttore"+cont%>><%=v.getProduttore()%></td>
-                <td id=<%="prezzo"+cont%>><%=v.getPrezzo()%></td>
-                <td id=<%="modello"+cont%>><%=v.getModello()%></td>
-                <td id=<%="alimentazione"+cont%>><%=v.getAlimentazione()%></td>
-                <td id=<%="colore"+cont%>><%=v.getColore()%></td>
-                <td><input type="submit" value="Compra" 
-                		id=<%="form"+cont%>
-            	  		name=<%="form"+cont%>></td>
-                <td><input type="submit" value="Modifica"
-                		id=<%="form"+cont%>
-            	  		name=<%="form"+cont%>></td>
+            <form id="F<%=cont%>" action="../concessionariaWeb/compra" method="post">
+             <td><input type="text" readonly="readonly" id=<%="id"+cont%> name="id" value="<%=v.getId() %>"></td>
+             <td><input type="text" readonly="readonly" tipo=<%="tipo"+cont%> name="tipo" value="<%=v.getTipo() %>"></td>
+             <td><input type="text" <%=readonly%> id=<%="targa"+cont%> name="targa" value="<%=v.getTarga() %>"></td>
+             <td><input type="text" <%=readonly%> id=<%="produttore"+cont%> name="produttore" value="<%=v.getProduttore() %>"></td>
+             <td><input type="text" <%=readonly%> id=<%="prezzo"+cont%> name="prezzo" value="<%=v.getPrezzo() %>"></td>
+             <td><input type="text" <%=readonly%> id=<%="modello"+cont%> name="modello" value="<%=v.getModello() %>"></td>
+             <td><input type="text" <%=readonly%> id=<%="alimentazione"+cont%> name="alimentazione" value="<%=v.getAlimentazione() %>"></td>
+             <td><input type="text" <%=readonly%> id=<%="colore"+cont%> name="colore" value="<%=v.getColore() %>"></td>
+             <td><button onclick="return confermaCompra(<%=cont%>)">Compra</td>
+             <td><button>Modifica</td>
             </form>
 
         </tr>
@@ -68,6 +68,15 @@ else{
 
 %>
     </table>
+    <script>
+    	function confermaCompra(cont){
+    		if(confirm("Confermi l'acquisto?")){
+    			document.getElementById("F"+cont).submit();
+    		}
+    		return false;
+    	}
+    
+    </script>
 </body>
 
 </html>
