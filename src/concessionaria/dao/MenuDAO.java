@@ -42,6 +42,7 @@ public class MenuDAO implements Dao<Menu> {
 				 item = creaItem(rs);
 				 menu.add(item);
 			 }
+			 //if(menu.menuSize()==0) throw new BlankException();
 	
 		 }catch (ClassNotFoundException | SQLException | NamingException e) {
 			 e.printStackTrace();

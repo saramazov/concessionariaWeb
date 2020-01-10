@@ -8,15 +8,16 @@ import concessionaria.model.Menu;
 
 public class LoginService {
 
-	public DTO comunicaServlet(String id) throws ConcessionariaException {
+	public DTO comunicaServlet(String id) {
 		
-		DTO dto = null;
+		DTO dto = new DTO();
 		try {
 			Dipendente dipendente = usaDaoDipendente(id);
 			Menu menu = usaDaoMenu(dipendente.getRuolo());
-			dto = new DTO(dipendente,menu,null);
+			dto.addDipendente(dipendente);
+			dto.addMenu(menu);
 		} catch(Exception e) {
-			//dto.addEccezione(e);
+			dto.addException(e);
 		}
 		
 		return dto;
@@ -29,9 +30,13 @@ public class LoginService {
 		
 	}
 	
-	private Dipendente usaDaoDipendente(String id) throws NumberFormatException, ConcessionariaException {
+	private Dipendente usaDaoDipendente(String id) throws
+										ConcessionariaException {
 		DipendenteDAO dao = new DipendenteDAO();
-		Dipendente dip = dao.findById(Long.parseLong(id));	
+		Dipendente dip = dao.findById(Long.parseLong(id));
+		if(dip==null) {
+			throw new ConcessionariaException("ID: "+id+" not found");
+		}
 		return dip;
 	}
 

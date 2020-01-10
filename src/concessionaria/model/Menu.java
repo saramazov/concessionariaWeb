@@ -15,6 +15,10 @@ public class Menu implements Iterable {
 	public void add(MenuItem item) {
 		elenco.add(item);
 	}
+	
+	public Integer menuSize() {
+		return this.elenco.size();
+	}
 
 	@Override
 	public String toString() {

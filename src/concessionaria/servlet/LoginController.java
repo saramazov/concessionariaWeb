@@ -12,12 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 import concessionaria.dao.DipendenteDAO;
 import concessionaria.db.ConcessionariaException;
 import concessionaria.model.Dipendente;
+import service.DTO;
+import service.LoginService;
 
 /**
  * Servlet implementation class Controller
  */
 @WebServlet({ "/Controller", "/ctrl", "/cr" })
-public class Controller extends HttpServlet {
+public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -26,17 +28,9 @@ public class Controller extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String id = request.getParameter("id");
-		DipendenteDAO dao = new DipendenteDAO();
-		try {
-			Dipendente dip = dao.findById(Long.parseLong(id));
-			request.setAttribute("dipendente", dip);
-			if(dip!=null) {
-				request.setAttribute("ruolo",dip.getRuolo());
-			}
-		} catch (NumberFormatException | ConcessionariaException e) {
-			e.printStackTrace();
-		}
-			
+		LoginService service  = new LoginService();
+		DTO dto = service.comunicaServlet(id);
+		request.setAttribute("dto", dto);	
 		RequestDispatcher rd = request.getRequestDispatcher("jsp/view.jsp");
 		rd.forward(request, response);
 	}
