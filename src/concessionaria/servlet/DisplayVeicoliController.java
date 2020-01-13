@@ -13,6 +13,8 @@ import concessionaria.service.LoginDTO;
 import concessionaria.service.LoginService;
 import concessionaria.service.VeicoloDTO;
 import concessionaria.service.VeicoloService;
+import concessionaria.service.VeicoloVendutoDTO;
+import concessionaria.service.VenditaService;
 
 /**
  * Servlet implementation class DisplayVeicoliController
@@ -34,8 +36,11 @@ public class DisplayVeicoliController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		VeicoloService service  = new VeicoloService();
+		VenditaService serviceSold  = new VenditaService();
 		VeicoloDTO dto = service.comunicaServlet();
+		VeicoloVendutoDTO dtoSold = serviceSold.comunicaServlet("1");
 		request.setAttribute(VeicoloDTO.NAME, dto);	
+		request.setAttribute(VeicoloVendutoDTO.NAME, dtoSold);
 		RequestDispatcher rd = request.getRequestDispatcher("jsp/dispveic.jsp");
 		rd.forward(request, response);
 		

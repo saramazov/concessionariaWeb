@@ -18,7 +18,7 @@ public class LoginService {
 			dto.addMenu(menu);
 			//System.out.println(menu.menuSize());
 		} catch(Exception e) {
-			dto.addException(e);
+			dto.setEccezione(e);
 		}
 		
 		return dto;

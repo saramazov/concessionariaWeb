@@ -5,7 +5,7 @@
 				maxWait="10000"
 		username="master" password="manager"
 		driverClassName="com.mysql.cj.jdbc.Driver"
-		url="jdbc:mysql://localhost:3306/corso?serverTimezone=Europe/Rome">
+		url="jdbc:mysql://192.168.9.19:3306/corso?serverTimezone=Europe/Rome">
 	</Resource >
 	
 </Context>

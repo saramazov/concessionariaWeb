@@ -3,20 +3,11 @@ package concessionaria.service;
 import concessionaria.model.Dipendente;
 import concessionaria.model.Menu;
 
-public class LoginDTO {
+public class LoginDTO extends DTO{
 
 	public static final String NAME = "concessionaria.service.LoginDTO";
 	private Dipendente dipendente;
 	private Menu menu;
-	private Exception eccezione;
-	
-	public LoginDTO() {}
-	
-//	public DTO(Dipendente dipendente, Menu menu, Exception eccezione) {
-//		this.dipendente = dipendente;
-//		this.menu = menu;
-//		this.eccezione = eccezione;
-//	}
 
 	public void addDipendente(Dipendente dipendente) throws Exception {
 		this.dipendente = dipendente;
@@ -26,20 +17,12 @@ public class LoginDTO {
 		this.menu = menu;
 	}
 	
-	public void addException(Exception eccezione) {
-		this.eccezione = eccezione;
-	}
-	
 	public Dipendente getDipendente() {
 		return dipendente;
 	}
 
 	public Menu getMenu() {
 		return menu;
-	}
-
-	public Exception getEccezione() {
-		return eccezione;
 	}
 
 	public boolean existsDipendente() {
@@ -51,7 +34,7 @@ public class LoginDTO {
 	}
 	
 	public boolean success() {
-		return this.eccezione==null;
+		return this.getEccezione()==null;
 	}
 	
 }

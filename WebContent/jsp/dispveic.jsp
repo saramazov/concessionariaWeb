@@ -19,6 +19,7 @@ if(!ruolo.equals("A")){
 	readonly="readonly=\"readonly\"";
 }
 VeicoloDTO dto = (VeicoloDTO) request.getAttribute(VeicoloDTO.NAME);
+VeicoloVendutoDTO dtoSold = (VeicoloVendutoDTO) request.getAttribute(VeicoloVendutoDTO.NAME);
 if(!dto.success()){
 	%>
     <div>
@@ -29,7 +30,9 @@ if(!dto.success()){
 else{
 %>
 
-    <table>
+<% if(dtoSold.success()) {%><table>
+ <tr> 
+   <td> <%} %><table>
         <tr>
             <th>ID</th>
             <th>Tipo</th>
@@ -67,7 +70,9 @@ else{
 }
 
 %>
-    </table>
+    </table> <%if(dtoSold.success()) {%></td>
+    <td>Acquisto confermato</td></tr>
+    </table> <%} %>
     <script>
     	function confermaCompra(cont){
     		if(confirm("Confermi l'acquisto?")){

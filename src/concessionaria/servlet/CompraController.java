@@ -1,6 +1,8 @@
 package concessionaria.servlet;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,9 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import concessionaria.model.Veicolo;
 import concessionaria.service.LoginDTO;
 import concessionaria.service.LoginService;
 import concessionaria.service.VeicoloDTO;
+import concessionaria.service.VeicoloService;
+import concessionaria.service.VeicoloVendutoDTO;
 import concessionaria.service.VenditaService;
 
 /**
@@ -28,9 +33,12 @@ public class CompraController extends HttpServlet {
 	
 		String id = request.getParameter("id");
 		VenditaService service  = new VenditaService();
-		VeicoloDTO dto = service.comunicaServlet(id);
-		request.setAttribute(VeicoloDTO.NAME, dto);	
-		RequestDispatcher rd = request.getRequestDispatcher("jsp/vendita.jsp");
+		VeicoloService serviceDisplay = new VeicoloService();
+		VeicoloVendutoDTO dto = service.comunicaServlet(id);
+		VeicoloDTO dtoVeicoli = serviceDisplay.comunicaServlet();
+		request.setAttribute(VeicoloVendutoDTO.NAME, dto);	
+		request.setAttribute(VeicoloDTO.NAME, dtoVeicoli);
+		RequestDispatcher rd = request.getRequestDispatcher("jsp/dispveic.jsp");
 		rd.forward(request, response);
 	}
 

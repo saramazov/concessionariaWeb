@@ -1,28 +1,28 @@
 package concessionaria.service;
 
-import java.util.Collection;
-
 import concessionaria.dao.VeicoloDAO;
 import concessionaria.db.ConcessionariaException;
 import concessionaria.model.Veicolo;
 
 public class VenditaService {
-public VeicoloDTO comunicaServlet(String id) {
+public VeicoloVendutoDTO comunicaServlet(String id) {
 		
-		VeicoloDTO dto = new VeicoloDTO();
+		VeicoloVendutoDTO dto = new VeicoloVendutoDTO();
 		try {
-			usaDaoVeicolo(id);
+			dto.addVeicolo(usaDaoVeicolo(id));
 		} catch (ConcessionariaException e) {
-			dto.addEccezione(e);
+			dto.setEccezione(e);
 		}
 		return dto;
 	}
 	
-	private void usaDaoVeicolo(String id) throws 
+	private Veicolo usaDaoVeicolo(String id) throws 
 												ConcessionariaException {
 		VeicoloDAO dao = new VeicoloDAO();
+		Veicolo veicoloVenduto = dao.findById(Long.parseLong(id));
 		dao.remove(Long.parseLong(id));
-
+		return veicoloVenduto;
+		
 	}
 
 }

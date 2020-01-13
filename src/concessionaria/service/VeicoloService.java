@@ -19,7 +19,7 @@ public class VeicoloService {
 			Collection<Veicolo> veicoli = usaDaoVeicolo();
 			dto.addVeicoli(veicoli);
 		} catch (ConcessionariaException e) {
-			dto.addEccezione(e);
+			dto.setEccezione(e);
 		}
 		return dto;
 	}

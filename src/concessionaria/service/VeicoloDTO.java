@@ -6,11 +6,10 @@ import java.util.Iterator;
 
 import concessionaria.model.Veicolo;
 
-public class VeicoloDTO implements Iterable<Veicolo> {
+public class VeicoloDTO extends DTO implements Iterable<Veicolo> {
 
 	public static final String NAME = "concessionaria.service.VeicoloDTO";
 	private Collection<Veicolo> veicoli;
-	private Exception eccezione;
 	
 	public VeicoloDTO() {
 		this.veicoli = new ArrayList<Veicolo>();
@@ -20,16 +19,8 @@ public class VeicoloDTO implements Iterable<Veicolo> {
 		this.veicoli = veicoli;
 	}
 
-	public Exception getEccezione() {
-		return eccezione;
-	}
-
-	public void addEccezione(Exception eccezione) {
-		this.eccezione = eccezione;
-	}
-	
 	public boolean success() {
-		return eccezione==null;
+		return getEccezione()==null;
 	}
 	
 	@Override
