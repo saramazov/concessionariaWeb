@@ -1,6 +1,6 @@
 package concessionaria.service;
 
-import concessionaria.dao.ConcessionariaException;
+import concessionaria.db.ConcessionariaException;
 import concessionaria.dao.DipendenteDAO;
 import concessionaria.model.Dipendente;
 
@@ -24,7 +24,7 @@ public class DipendentiService {
 		DipendenteDAO dao = new DipendenteDAO();
 		
 	    dto.setDipendenteUp(dip);
-	    dto.setMsg("Hai modificato il dipendente " + dip.getMatricola());
+	    dto.setMessage("Hai modificato il dipendente " + dip.getMatricola());
 		try {
 			dao.update(dip);
 			
